@@ -1,0 +1,79 @@
+@startuml use-case
+!theme cerulean-outline
+left to right direction
+skinparam actorstyle awesome
+
+actor User as u
+
+rectangle Explorer {
+    package Chains {
+        usecase "Get chain's summary" as (chn uc1)
+    }
+
+    package Blocks {
+        usecase "Search a Block by block number" as (blk uc1)
+    }
+
+    package Transactions {
+        usecase "Get latest transactions" as (tx uc1)
+        usecase "Search a tx by address" as (tx uc2)
+        usecase "Search a tx by tx hash" as (tx uc3)
+    }
+
+    package Contracts {
+        usecase "Get a contract" as (cntr uc1)
+        usecase "Search a contract by address" as (cntr uc2)
+    }
+
+    package Tokens {
+        usecase "Search a token by the symbol" as (tkn uc1)
+        usecase "Get top tokens" as (tkn uc2)
+    }
+
+    package EOAs {
+        usecase "Search an account by address" as (eoa uc1)
+        usecase "Search an account by ENS" as (eoa uc2)
+        usecase "Get an account's transactions" as (eoa uc3)
+    }
+
+    package NFTs {
+        usecase "Get top NFTs" as (nft uc1)
+        usecase "View latest NFT trades" as (nft uc2)
+    }
+
+}
+
+rectangle Verifier {
+    usecase "Verify a contract" as (vf uc1)
+}
+
+rectangle Auth {
+    usecase "Login to explorer" as (auth uc1)
+}
+
+u --> (chn uc1)
+
+u --> (blk uc1)
+
+u --> (tx uc1)
+u --> (tx uc2)
+u --> (tx uc3)
+
+u --> (cntr uc1)
+u --> (cntr uc2)
+
+u --> (tkn uc1)
+u --> (tkn uc2)
+
+u --> (eoa uc1)
+u --> (eoa uc2)
+u --> (eoa uc3)
+
+u --> (nft uc1)
+u --> (nft uc2)
+
+(vf uc1) <-- u
+
+(auth uc1) <-- u
+
+@enduml
